@@ -1,0 +1,10 @@
+{
+  "name": "mern-api-template2",
+  "version": "0.0.1",
+  "description": "MERN API template for teaching purposes",
+  "main": "index.js",
+  "repository": "git@github.com-TomHawk123:TomHawk123/MERN_API_TEMPLATE2.git",
+  "author": "TomHawk123 <matthew.mcmorries@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
