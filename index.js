@@ -33,6 +33,7 @@ app.post("/create/user", async (req, res) => {
     }
 
     const checkIfUserAlreadyExists = User.exists({ username });
+    console.log("checkIfUserAlreadyExists", checkIfUserAlreadyExists);
     if (checkIfUserAlreadyExists) {
       return res.status(400).json({ msg: "Username already exists" });
     }
