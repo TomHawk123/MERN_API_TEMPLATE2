@@ -3,6 +3,8 @@ const { default: mongoose } = require("mongoose");
 const app = express();
 configureDotenv = require("dotenv").config();
 const cors = require("cors");
+const http = require("http");
+
 const { PORT, MONGO_URI, MERN_CLIENT_URL } = process.env;
 const User = require("./src/models/UsersModel");
 
@@ -23,6 +25,8 @@ try {
 
 app.use(cors({ origin: `${MERN_CLIENT_URL}` }));
 app.use(express.json());
+
+http.createServer(app);
 
 app.get("/", (req, res) => {
   res.send("hello from simple server :)");
@@ -46,9 +50,11 @@ app.post("/create/user", async (req, res) => {
     if (checkIfUserAlreadyExists) {
       return res.status(400).json({ msg: "Username already exists" });
     }
+
     const newUser = new User({ username, password });
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    await newUser.save();
+
+    return res.status(201).json({ success: true });
   } catch (error) {
     console.error("error in create/user: ", error);
   }
