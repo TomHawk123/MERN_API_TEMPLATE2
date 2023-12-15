@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const app = express();
 configureDotenv = require("dotenv").config();
 const cors = require("cors");
-const { PORT, MONGO_URI, THIS_HOST_URL } = process.env;
+const { PORT, MONGO_URI, MERN_CLIENT_URL } = process.env;
 const User = require("./src/models/UsersModel");
 
 mongoose
@@ -11,7 +11,7 @@ mongoose
   .then(() => console.log("> Connected to MongoDB"))
   .catch((err) => console.error("> Error connecting to MONGO_URI : " + err));
 
-app.use(cors({ origin: `${THIS_HOST_URL}` }));
+app.use(cors({ origin: `${MERN_CLIENT_URL}` }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
